@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://bbgsjhur6fokm"]
 
 [ext_resource type="Script" uid="uid://cv5cr3lui00n2" path="res://MainCharacter/character_body_2d.gd" id="1_wmkwl"]
+
 [ext_resource type="Texture2D" uid="uid://dkh5hfjywtf48" path="res://Assets/pink_larvae_crawl_sprite_sheet (2).png" id="2_b1h05"]
+
+[ext_resource type="Texture2D" uid="uid://dfhksnbfe7m57" path="res://Assets/icon.svg" id="2_uvl38"]
+[ext_resource type="PackedScene" uid="uid://cd07w0q8y2oki" path="res://MainCharacter/health_system.tscn" id="3_bykjv"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2q423"]
 size = Vector2(20, 7.390451)
@@ -65,3 +70,5 @@ sprite_frames = SubResource("SpriteFrames_8yqgs")
 frame_progress = 0.41441467
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=647003749]
+
+[node name="HealthSystem" parent="." unique_id=1772652342 instance=ExtResource("3_bykjv")]
