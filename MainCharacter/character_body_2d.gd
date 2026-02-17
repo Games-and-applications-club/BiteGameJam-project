@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var dash_speed = 1200.0
 @export var dash_duration = 0.15
 @export var dash_cooldown = 3.0
+@export var jump_cooldown = 1.0
 
 @export_group("Dash UI")
 @export var indicator_anchor: Control.LayoutPreset = Control.PRESET_BOTTOM_RIGHT
@@ -19,6 +20,7 @@ var facing_direction = 1.0
 var is_dashing = false
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
+var jump_cooldown_timer = 0.0
 var web_count = 0
 @export var web_slowdown_factor = 0.4
 
@@ -65,6 +67,9 @@ func _physics_process(delta):
 			recharge_sound.play()
 		if dash_indicator:
 			dash_indicator.value = dash_cooldown - dash_cooldown_timer
+	
+	if jump_cooldown_timer > 0:
+		jump_cooldown_timer -= delta
 	if is_dashing:
 		dash_timer -= delta
 		if dash_timer <= 0:
@@ -81,12 +86,14 @@ func _physics_process(delta):
 
 	var jump_attempt = Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_up")
 
-	if jump_attempt:
+	if jump_attempt and jump_cooldown_timer <= 0:
 		if is_on_floor():
 			velocity.y = jump_velocity
+			jump_cooldown_timer = jump_cooldown
 		elif is_on_wall_only():
 			velocity.y = jump_velocity
 			velocity.x = get_wall_normal().x * wall_jump_force
+			jump_cooldown_timer = jump_cooldown
 
 	var direction = Input.get_axis("move_left", "move_right")
 	
