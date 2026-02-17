@@ -19,10 +19,13 @@ var facing_direction = 1.0
 var is_dashing = false
 var dash_timer = 0.0
 var dash_cooldown_timer = 0.0
+var web_count = 0
+@export var web_slowdown_factor = 0.4
 
 @onready var dash_indicator = $CanvasLayer/DashIndicator
 
 func _ready():
+	add_to_group("player")
 	if not has_node("CanvasLayer"):
 		var cl = CanvasLayer.new()
 		add_child(cl)
@@ -72,11 +75,15 @@ func _physics_process(delta):
 
 	var direction = Input.get_axis("move_left", "move_right")
 	
+	var current_speed = speed
+	if web_count > 0:
+		current_speed *= web_slowdown_factor
+	
 	if direction:
-		velocity.x = direction * speed
+		velocity.x = direction * current_speed
 		facing_direction = sign(direction)
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, current_speed)
 
 	if Input.is_action_just_pressed("dash") and dash_cooldown_timer <= 0:
 		start_dash()
@@ -91,3 +98,9 @@ func start_dash():
 	velocity.y = 0
 	if dash_indicator:
 		dash_indicator.value = 0
+
+func enter_web():
+	web_count += 1
+
+func exit_web():
+	web_count = max(0, web_count - 1)
