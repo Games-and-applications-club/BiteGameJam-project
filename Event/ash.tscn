@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dox6i7jirfnhl"]
+
+[ext_resource type="Script" uid="uid://c0bfugrs7ahxl" path="res://Event/ash.gd" id="1_6nolg"]
+[ext_resource type="Texture2D" uid="uid://dfhksnbfe7m57" path="res://Assets/icon.svg" id="1_arpan"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nolg"]
+size = Vector2(128, 128)
+
+[node name="Ash" type="Area2D" unique_id=1768633402]
+script = ExtResource("1_6nolg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1467641766]
+texture = ExtResource("1_arpan")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1997644911]
+shape = SubResource("RectangleShape2D_6nolg")
+
+[node name="Timer" type="Timer" parent="." unique_id=111820079]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
