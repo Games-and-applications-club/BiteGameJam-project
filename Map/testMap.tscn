@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://ips6qbsnxgeb"]
 
 [ext_resource type="Texture2D" uid="uid://ce38xs563mp5g" path="res://Assets/testTileset.png" id="1_r057v"]
+[ext_resource type="PackedScene" uid="uid://bbgsjhur6fokm" path="res://MainCharacter/main_character.tscn" id="2_oemjb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oemjb"]
 texture = ExtResource("1_r057v")
@@ -149,3 +150,5 @@ tile_set = SubResource("TileSet_ayjuu")
 [node name="TextureRect" type="TextureRect" parent="." unique_id=340853229]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Main-character" parent="." unique_id=1231940662 instance=ExtResource("2_oemjb")]
