@@ -54,14 +54,13 @@ func _ready():
 		cl.add_child(progress)
 		dash_indicator = progress
 
+
 func _physics_process(delta):
+	var target_rotation = 0.0
 	if is_on_wall_only():
-		if $AnimatedSprite2D.flip_h:
-			$AnimatedSprite2D.rotation_degrees = -90
-		else:
-			$AnimatedSprite2D.rotation_degrees = 90
-	else:
-		$AnimatedSprite2D.rotation_degrees = 0
+		target_rotation = deg_to_rad(-90 if $AnimatedSprite2D.flip_h else 90)
+	$AnimatedSprite2D.rotation = lerp_angle($AnimatedSprite2D.rotation, target_rotation, 10.0 * delta)
+
 
 	if dash_cooldown_timer > 0:
 		dash_cooldown_timer -= delta
