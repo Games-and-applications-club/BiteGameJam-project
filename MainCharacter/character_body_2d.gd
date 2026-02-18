@@ -14,6 +14,8 @@ extends CharacterBody2D
 @export var indicator_offset: Vector2 = Vector2(-20, -20)
 @export var indicator_scale: Vector2 = Vector2(0.5, 0.5)
 
+@onready var hpSystem: CanvasLayer = $CanvasGroup/HealthSystem
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var facing_direction = 1.0
 var is_dashing = false

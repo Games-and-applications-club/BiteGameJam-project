@@ -11,16 +11,13 @@ func _ready() -> void:
 
 		
 func update_heart_display():
+	if health == 0:
+		$"../GameOver".die()
 	for i in range(heart_list.size()):
 		heart_list[i].visible = i < health
 
 
-func _on_button_pressed() -> void:
+func take_damage():
 	if health > 0:
 		health -= 1
-	update_heart_display()
-
-
-func _on_button_2_pressed() -> void:
-	health += 1
 	update_heart_display()

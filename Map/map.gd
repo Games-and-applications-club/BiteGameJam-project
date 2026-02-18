@@ -5,6 +5,7 @@ extends Node2D
 
 var in_left := true
 var in_right := false
+var start := false
 
 func _on_left_area_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
@@ -21,19 +22,17 @@ func _on_right_area_body_entered(body: Node2D) -> void:
 func _on_left_area_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		in_left = false
-		in_right = true
 		update_cover()
 
 func _on_right_area_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		in_right = false
-		in_left = true
 		update_cover()
 
 func update_cover():
 	if in_left:
-		var start := false
 		if !start:
+			start = true
 			fade_left(0.0, 3.0)
 		else:
 			fade_right(1.0, 0.5)

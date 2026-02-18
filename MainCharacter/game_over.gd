@@ -21,7 +21,11 @@ func label_fade(target_alpha: float, duration: float = 1.0):
 
 
 func _on_button_pressed() -> void:
+	die()
+	
+func die():
 	await fade(0.5, 2.0)
 	await label_fade(1, 4.0).finished
 	
 	get_tree().reload_current_scene()
+	
