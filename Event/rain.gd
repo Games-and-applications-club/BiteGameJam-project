@@ -1,7 +1,6 @@
 extends GPUParticles2D
 
 @onready var player = null
-
 @onready var warning: TextureRect= $TextureRect
 
 # Called when the node enters the scene tree for the first time.
@@ -16,9 +15,11 @@ func fade(target_alpha: float, duration: float = 1.0):
 	return tween
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	$Timer.stop()
 	$Timer2.stop()
+	$Timer3.stop()
 	self.process_material.color.a = 0.0
+	warning.modulate.a = 0.0
+	player = null
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
@@ -26,13 +27,28 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		$Timer2.start()
 
 func _on_timer_2_timeout() -> void:
+	if player == null:
+		return
+
 	for i in range(3):
 		await fade(1.0, 0.5).finished
+		
+	if player == null:
+		return
+		
 		await fade(0.0, 0.5).finished
+		
+	if player == null:
+		return
+		
 	self.process_material.color.a = 1.0
 	$Timer3.start()
 	player.hpSystem.take_damage()
 
 func _on_timer_3_timeout() -> void:
+	if player == null:
+		$Timer3.stop()
+		return
+	
 	$Timer3.start()
 	player.hpSystem.take_damage()

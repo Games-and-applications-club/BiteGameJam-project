@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://di6qcu5prnbg5"]
 
 [ext_resource type="Texture2D" uid="uid://dgitgtyqpwhr0" path="res://Assets/1 Tiles/BayTile_38.png" id="1_cccvd"]
-[ext_resource type="Script" path="res://Map/map.gd" id="1_jq5q4"]
+[ext_resource type="Script" uid="uid://b2jwv1dxdccj6" path="res://Map/map.gd" id="1_jq5q4"]
 [ext_resource type="Texture2D" uid="uid://ct1hwnymvmg5q" path="res://Assets/1 Tiles/Tile_04.png" id="2_0g0qh"]
 [ext_resource type="Texture2D" uid="uid://c2l8bp1hat0qc" path="res://Assets/1 Tiles/BayTile_07.png" id="2_jq5q4"]
-[ext_resource type="PackedScene" uid="uid://bmi1fl1udaa4m" path="res://background.tscn" id="2_s8uph"]
+[ext_resource type="PackedScene" path="res://background.tscn" id="2_s8uph"]
 [ext_resource type="Texture2D" uid="uid://8xoggw3rly67" path="res://Assets/1 Tiles/BayTile_09.png" id="3_ehio4"]
 [ext_resource type="Texture2D" uid="uid://hjtc41twbbr8" path="res://Assets/1 Tiles/Tile_01.png" id="3_t64y5"]
 [ext_resource type="Texture2D" uid="uid://bs07sjn2m4fwj" path="res://Assets/1 Tiles/BayTile_08.png" id="4_7a0j3"]
@@ -271,10 +271,8 @@ position = Vector2(1944, 8550)
 shape = SubResource("RectangleShape2D_bl6si")
 
 [node name="Ash" parent="." unique_id=1768633402 instance=ExtResource("17_t64y5")]
-position = Vector2(308, 31)
+position = Vector2(777, 190)
 time = 1
-
-[node name="Light" parent="Ash" unique_id=1656409576 instance=ExtResource("18_b3jsu")]
 
 [node name="Light" parent="." unique_id=1053897446 instance=ExtResource("18_b3jsu")]
 position = Vector2(-10, -130)
