@@ -20,7 +20,7 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func setup(start_pos: Vector2, target_pos: Vector2):
-	$BirdSprite.play("fly")
+	$BirdSprite.play("Fly")
 	global_position = start_pos
 	target_position = target_pos
 	
@@ -58,6 +58,7 @@ func start_warning():
 	tween.kill()
 	warning_sprite.hide()
 	bird_sprite.show()
+	bird_sprite.play("Fly")
 	collision_shape.set_deferred("disabled", false)
 	is_active = true
 	

@@ -75,10 +75,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"Fly",
-"speed": 24.0
+"speed": 50.0
 }]
 
 [node name="Bird" type="Area2D" unique_id=643880452]
+scale = Vector2(3.0185423, 3.0185423)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_bird_script")
@@ -90,7 +91,7 @@ shape = SubResource("CircleShape2D_bird")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ay1ia")
 animation = &"Fly"
-frame_progress = 0.8367939
+frame_progress = 0.5589839
 flip_h = true
 
 [node name="WarningSprite" type="Sprite2D" parent="." unique_id=1120500954]
