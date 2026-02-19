@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b2jwv1dxdccj6" path="res://Map/map.gd" id="1_jq5q4"]
 [ext_resource type="Texture2D" uid="uid://ct1hwnymvmg5q" path="res://Assets/1 Tiles/Tile_04.png" id="2_0g0qh"]
 [ext_resource type="Texture2D" uid="uid://c2l8bp1hat0qc" path="res://Assets/1 Tiles/BayTile_07.png" id="2_jq5q4"]
-[ext_resource type="PackedScene" path="res://background.tscn" id="2_s8uph"]
+[ext_resource type="PackedScene" uid="uid://bmi1fl1udaa4m" path="res://background.tscn" id="2_s8uph"]
 [ext_resource type="Texture2D" uid="uid://8xoggw3rly67" path="res://Assets/1 Tiles/BayTile_09.png" id="3_ehio4"]
 [ext_resource type="Texture2D" uid="uid://hjtc41twbbr8" path="res://Assets/1 Tiles/Tile_01.png" id="3_t64y5"]
 [ext_resource type="Texture2D" uid="uid://bs07sjn2m4fwj" path="res://Assets/1 Tiles/BayTile_08.png" id="4_7a0j3"]
@@ -71,9 +71,13 @@ texture = ExtResource("3_ehio4")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tlvak"]
 texture = ExtResource("4_7a0j3")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4r87e"]
 texture = ExtResource("5_0g0qh")
@@ -280,7 +284,6 @@ position = Vector2(448.00003, 194.00002)
 scale = Vector2(3, 3)
 
 [node name="Rain" parent="." unique_id=927174176 instance=ExtResource("19_2q318")]
-visible = false
 position = Vector2(1288, -54)
 
 [node name="LeftCover" type="ColorRect" parent="." unique_id=1249541636]
