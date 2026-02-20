@@ -1,14 +1,29 @@
 [gd_scene format=3 uid="uid://bmi1fl1udaa4m"]
 
 [ext_resource type="Texture2D" uid="uid://c4us2xnw5vwu5" path="res://background/building_close_1_extends.png" id="1_oabld"]
+[ext_resource type="Texture2D" uid="uid://cjbnrktpwhxky" path="res://background/sky1.png" id="1_splo0"]
 [ext_resource type="Texture2D" uid="uid://dkv1w3exanfca" path="res://background/cloud2.png" id="1_xehqc"]
 [ext_resource type="Texture2D" uid="uid://cabaax7edir5h" path="res://background/cloud1.png" id="2_i7s6n"]
 
 [node name="Background" type="Node2D" unique_id=1347247109]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1683610834]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1295428066]
 
-[node name="Parallax2D2" type="Parallax2D" parent="ParallaxBackground" unique_id=1858878550]
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="CanvasLayer" unique_id=318567671]
+follow_viewport_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ParallaxBackground2" unique_id=113489891]
+texture_filter = 1
+offset_left = -287.0
+offset_top = -260.0
+offset_right = -159.0
+offset_bottom = -4.0
+scale = Vector2(36.796124, 36.796124)
+texture = ExtResource("1_splo0")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer" unique_id=1683610834]
+
+[node name="Parallax2D2" type="Parallax2D" parent="CanvasLayer/ParallaxBackground" unique_id=1858878550]
 texture_filter = 1
 scroll_scale = Vector2(2, 2)
 scroll_offset = Vector2(0, -13)
@@ -17,13 +32,31 @@ autoscroll = Vector2(80, 0)
 repeat_times = 5
 follow_viewport = false
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D2" unique_id=483890580]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/Parallax2D2" unique_id=483890580]
 texture_filter = 1
 position = Vector2(-1379.9999, 757)
 scale = Vector2(10, 10)
 texture = ExtResource("1_xehqc")
 
-[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground" unique_id=1966800016]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground" unique_id=1352373759]
+position = Vector2(977, 734)
+motion_mirroring = Vector2(0, 67)
+
+[node name="Parallax2D" type="Parallax2D" parent="CanvasLayer/ParallaxBackground/ParallaxLayer" unique_id=734021945]
+texture_filter = 1
+scroll_scale = Vector2(0.2, 0)
+scroll_offset = Vector2(-455, -63)
+repeat_size = Vector2(0, 67)
+repeat_times = 5
+follow_viewport = false
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/ParallaxLayer/Parallax2D" unique_id=1618776473]
+texture_filter = 1
+position = Vector2(65, 528)
+scale = Vector2(12, 12)
+texture = ExtResource("1_oabld")
+
+[node name="Parallax2D" type="Parallax2D" parent="CanvasLayer/ParallaxBackground" unique_id=1966800016]
 texture_filter = 1
 scroll_scale = Vector2(2, 2)
 scroll_offset = Vector2(0, -13)
@@ -32,26 +65,8 @@ autoscroll = Vector2(100, 0)
 repeat_times = 5
 follow_viewport = false
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D" unique_id=813644207]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/ParallaxBackground/Parallax2D" unique_id=813644207]
 texture_filter = 1
 position = Vector2(252.99998, 626.00006)
 scale = Vector2(10, 10)
 texture = ExtResource("2_i7s6n")
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1352373759]
-position = Vector2(977, 734)
-motion_mirroring = Vector2(0, 67)
-
-[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground/ParallaxLayer" unique_id=734021945]
-texture_filter = 1
-scroll_scale = Vector2(0.2, 0)
-scroll_offset = Vector2(-455, -63)
-repeat_size = Vector2(0, 67)
-repeat_times = 5
-follow_viewport = false
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer/Parallax2D" unique_id=1618776473]
-texture_filter = 1
-position = Vector2(65, 528)
-scale = Vector2(12, 12)
-texture = ExtResource("1_oabld")
