@@ -25,9 +25,14 @@ var dash_cooldown_timer = 0.0
 var jump_cooldown_timer = 0.0
 var web_count = 0
 @export var web_slowdown_factor = 0.4
+var is_stunned = false
 
 @onready var dash_indicator = $CanvasLayer/DashIndicator
 var recharge_sound: AudioStreamPlayer
+var stun_reasons: Dictionary = {}
+var stun_timers: Dictionary = {}
+var damage_ignore_reasons: Dictionary = {}
+var damage_ignore_timers: Dictionary = {}
 
 func _ready():
 	recharge_sound = AudioStreamPlayer.new()
@@ -75,12 +80,23 @@ func _physics_process(delta):
 	
 	if jump_cooldown_timer > 0:
 		jump_cooldown_timer -= delta
+
+	if is_stunned:
+		if is_dashing:
+			is_dashing = false
+			set_damage_ignore(&"dash", false)
+			$AnimatedSprite2D.rotation = 0
+		velocity.x = move_toward(velocity.x, 0, speed)
+		move_and_slide()
+		return
+
 	if is_dashing:
 		dash_timer -= delta
 		var progress = 1.0 - (dash_timer / dash_duration)
 		$AnimatedSprite2D.rotation = progress * TAU * facing_direction
 		if dash_timer <= 0:
 			is_dashing = false
+			set_damage_ignore(&"dash", false)
 			$AnimatedSprite2D.rotation = 0
 		move_and_slide()
 		return
@@ -127,6 +143,7 @@ func _physics_process(delta):
 
 func start_dash():
 	is_dashing = true
+	set_damage_ignore(&"dash", true)
 	if $AnimatedSprite2D.sprite_frames.has_animation("roll"):
 		$AnimatedSprite2D.sprite_frames.set_animation_loop("roll", false)
 	$AnimatedSprite2D.play("roll")
@@ -142,3 +159,64 @@ func enter_web():
 
 func exit_web():
 	web_count = max(0, web_count - 1)
+
+func take_damage(amount: int = 1) -> bool:
+	if hpSystem and hpSystem.has_method("take_damage"):
+		return hpSystem.take_damage(amount)
+	return false
+
+func _refresh_stun_state() -> void:
+	is_stunned = not stun_reasons.is_empty()
+
+func is_damage_ignored() -> bool:
+	return not damage_ignore_reasons.is_empty()
+
+func set_damage_ignore(reason: StringName, enabled: bool, duration: float = 0.0) -> void:
+	if enabled:
+		damage_ignore_reasons[reason] = true
+		if duration > 0.0:
+			var existing_timer: SceneTreeTimer = damage_ignore_timers.get(reason, null)
+			if existing_timer and existing_timer.timeout.is_connected(_on_damage_ignore_timer_timeout.bind(reason)):
+				existing_timer.timeout.disconnect(_on_damage_ignore_timer_timeout.bind(reason))
+			var timer := get_tree().create_timer(duration)
+			damage_ignore_timers[reason] = timer
+			timer.timeout.connect(_on_damage_ignore_timer_timeout.bind(reason), CONNECT_ONE_SHOT)
+	else:
+		damage_ignore_reasons.erase(reason)
+		damage_ignore_timers.erase(reason)
+
+func _on_damage_ignore_timer_timeout(reason: StringName) -> void:
+	set_damage_ignore(reason, false)
+
+func set_stun(reason: StringName, enabled: bool, duration: float = 0.0) -> void:
+	if enabled:
+		stun_reasons[reason] = true
+		if is_dashing:
+			is_dashing = false
+			set_damage_ignore(&"dash", false)
+			$AnimatedSprite2D.rotation = 0
+		velocity.x = 0
+		if duration > 0.0:
+			var existing_timer: SceneTreeTimer = stun_timers.get(reason, null)
+			if existing_timer and existing_timer.timeout.is_connected(_on_stun_timer_timeout.bind(reason)):
+				existing_timer.timeout.disconnect(_on_stun_timer_timeout.bind(reason))
+			var timer := get_tree().create_timer(duration)
+			stun_timers[reason] = timer
+			timer.timeout.connect(_on_stun_timer_timeout.bind(reason), CONNECT_ONE_SHOT)
+	else:
+		stun_reasons.erase(reason)
+		stun_timers.erase(reason)
+
+	_refresh_stun_state()
+
+
+func _on_stun_timer_timeout(reason: StringName) -> void:
+	set_stun(reason, false)
+
+
+func stun(duration: float = 0.0):
+	set_stun(&"default", true, duration)
+
+
+func unstun():
+	set_stun(&"default", false)

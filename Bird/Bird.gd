@@ -83,8 +83,7 @@ func pop():
 func _on_body_entered(body):
 	if body.is_in_group("player"):
 		if body.get("hpSystem"):
-			body.hpSystem.health = 0
-			body.hpSystem.update_heart_display()
+			body.hpSystem.take_damage(body.hpSystem.health)
 		pop()
 	elif body is TileMap:
 		pop()
