@@ -3,6 +3,17 @@
 [ext_resource type="Script" uid="uid://xkjgi0wco8ij" path="res://MainCharacter/game_over.gd" id="1_rftea"]
 [ext_resource type="Texture2D" uid="uid://d3o2tdolip7bj" path="res://Assets/wasted (1).png" id="2_ootcb"]
 [ext_resource type="Texture2D" uid="uid://dyvvctcc7w0d0" path="res://Assets/retry.png" id="3_8sere"]
+[ext_resource type="Texture2D" uid="uid://db45l8vkuxws" path="res://Assets/leaf.png" id="4_qul20"]
+[ext_resource type="Script" uid="uid://c20cbydeseg8j" path="res://Scenes/h_slider.gd" id="5_nq2ra"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_uw1bl"]
+color = Color(2.0094587e-06, 0.46288532, 0, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yehv6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqtkr"]
+bg_color = Color(0.9140938, 0.6915834, 0.9212966, 1)
 
 [node name="GameOver" type="CanvasLayer" unique_id=1627354154]
 script = ExtResource("1_rftea")
@@ -49,4 +60,103 @@ offset_right = 144.0
 offset_bottom = 95.0
 texture = ExtResource("3_8sere")
 
+[node name="Button2" type="Button" parent="." unique_id=315192293]
+offset_left = 1038.0
+offset_top = 103.0
+offset_right = 1100.0
+offset_bottom = 134.0
+text = "Option"
+
+[node name="Panel" type="Panel" parent="." unique_id=1474285744]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -190.5
+offset_right = 242.0
+offset_bottom = 190.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel" unique_id=582720021]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.0
+offset_top = 17.0
+offset_right = 61.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1587690407]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="HSlider" type="HSlider" parent="Panel/VBoxContainer" unique_id=839432526]
+texture_filter = 1
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("4_qul20")
+theme_override_icons/grabber_highlight = ExtResource("4_qul20")
+theme_override_icons/grabber_disabled = ExtResource("4_qul20")
+theme_override_styles/slider = SubResource("StyleBoxLine_uw1bl")
+max_value = 1.0
+step = 0.001
+value = 0.5
+script = ExtResource("5_nq2ra")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=1715266661]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer" unique_id=835655714]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=845049047]
+layout_mode = 2
+text = "Muite"
+
+[node name="CheckButton" type="CheckButton" parent="Panel/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=184840471]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_yehv6")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/HBoxContainer" unique_id=938073381]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label2" type="Label" parent="Panel/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=1841748273]
+layout_mode = 2
+text = "Full Screen"
+
+[node name="CheckButton2" type="CheckButton" parent="Panel/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=801665286]
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="Panel/VBoxContainer" unique_id=2051543871]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_mqtkr")
+text = "Go Back"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="toggled" from="Panel/VBoxContainer/HBoxContainer/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="Panel/VBoxContainer/HBoxContainer/HBoxContainer2/CheckButton2" to="." method="_on_check_button_2_toggled"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
