@@ -20,6 +20,7 @@ color = Color(0.005927302, 0.20460516, 0.89087933, 1)
 size = Vector2(485, 9326)
 
 [node name="Rain" type="GPUParticles2D" unique_id=927174176]
+scale = Vector2(1.7016299, 1.7016299)
 amount = 40000
 lifetime = 20.0
 process_material = SubResource("ParticleProcessMaterial_kwx4i")
@@ -32,6 +33,7 @@ offset_left = -246.0
 offset_top = -5.0
 offset_right = 246.0
 offset_bottom = 9330.0
+scale = Vector2(0.58703554, 0.58703554)
 texture = ExtResource("2_ab2h2")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1616276076]
