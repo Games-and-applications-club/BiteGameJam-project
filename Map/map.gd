@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var leftCover: ColorRect = $LeftCover
 @onready var rightCover: ColorRect = $RightCover
+@onready var allCover: ColorRect = $CoverAll
 
 var in_left := true
 var in_right := false
@@ -53,3 +54,13 @@ func fade_right(target_alpha: float, duration: float = 1.0):
 	var tween = create_tween()
 	tween.tween_property(rightCover, "color:a", target_alpha, duration)
 	return tween
+
+func fade_all(target_alpha: float, duration: float = 1.0):
+	var tween = create_tween()
+	tween.tween_property(allCover, "color:a", target_alpha, duration)
+	return tween
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		await fade_all(1.0, 5.0).finished
+		get_tree().change_scene_to_file("res://Scenes/Ending.tscn")
