@@ -15,6 +15,10 @@ run/main_scene="uid://di6qcu5prnbg5"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
+[autoload]
+
+BgmPlayer="*uid://da5rda25ekbk2"
+
 [input]
 
 move_left={
