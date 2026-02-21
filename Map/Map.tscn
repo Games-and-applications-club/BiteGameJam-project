@@ -241,12 +241,13 @@ size = Vector2(204, 105.5)
 [node name="Map" type="Node2D" unique_id=1644254592]
 script = ExtResource("1_jq5q4")
 
-[node name="CameraLimiter2D" parent="." unique_id=549817282 instance=ExtResource("2_kmgy4")]
-position = Vector2(-2, 88)
+[node name="CameraLimiter2D" parent="." unique_id=549817282 node_paths=PackedStringArray("extra_areas") instance=ExtResource("2_kmgy4")]
+position = Vector2(76, -584)
 scale = Vector2(0.9408249, 1.0216888)
+extra_areas = [NodePath("Area2D"), NodePath("Area2D2")]
 
 [node name="Area2D" type="Area2D" parent="CameraLimiter2D" unique_id=1612250091]
-position = Vector2(1709, 3777)
+position = Vector2(1662.371, 4586.5244)
 scale = Vector2(34.87645, 60.69275)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimiter2D/Area2D" unique_id=285725569]
@@ -255,7 +256,7 @@ scale = Vector2(2.7636733, 7.462441)
 shape = SubResource("RectangleShape2D_dpt0a")
 
 [node name="Area2D2" type="Area2D" parent="CameraLimiter2D" unique_id=1414098795]
-position = Vector2(3964.6055, 8394.923)
+position = Vector2(3946.5366, 9072.234)
 scale = Vector2(43.073795, 2.584718)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimiter2D/Area2D2" unique_id=1027656962]
@@ -329,7 +330,7 @@ position = Vector2(109, 541)
 time = 1
 
 [node name="Main-character" parent="." unique_id=1231940662 instance=ExtResource("14_ehio4")]
-position = Vector2(-64, -110)
+position = Vector2(742, 190)
 
 [node name="LeftAreas" type="Node2D" parent="." unique_id=542322291]
 visible = false
