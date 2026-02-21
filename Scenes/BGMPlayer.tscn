@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://da5rda25ekbk2"]
+
+[ext_resource type="Script" uid="uid://4qhv716fkxwg" path="res://Scenes/bgm_player.gd" id="1_qjs7b"]
+[ext_resource type="AudioStream" uid="uid://esbx5ignj2d7" path="res://Assets/Koi-discovery - Beer-Blues.mp3" id="2_u1h50"]
+
+[node name="BgmPlayer" type="Node" unique_id=1555394245]
+script = ExtResource("1_qjs7b")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1194523856]
+stream = ExtResource("2_u1h50")
+autoplay = true
+parameters/looping = true

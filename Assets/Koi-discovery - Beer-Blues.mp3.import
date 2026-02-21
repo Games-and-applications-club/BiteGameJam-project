@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://esbx5ignj2d7"
+path="res://.godot/imported/Koi-discovery - Beer-Blues.mp3-2d2e2885dc0abbaf98aa3bf952cb8bc0.mp3str"
+
+[deps]
+
+source_file="res://Assets/Koi-discovery - Beer-Blues.mp3"
+dest_files=["res://.godot/imported/Koi-discovery - Beer-Blues.mp3-2d2e2885dc0abbaf98aa3bf952cb8bc0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
