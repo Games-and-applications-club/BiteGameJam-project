@@ -9,5 +9,4 @@ size = Vector2(640, 360)
 script = ExtResource("1_qffed")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=407297619]
-visible = false
 shape = SubResource("RectangleShape2D_2hs7n")
