@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 200.0
-@export var jump_velocity = -450.0
+@export var jump_velocity = -350.0
 @export var wall_slide_speed = 150.0
 @export var wall_jump_force = 400.0
 @export var dash_speed = 500.0
