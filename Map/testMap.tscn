@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bbgsjhur6fokm" path="res://MainCharacter/main_character.tscn" id="2_oemjb"]
 [ext_resource type="PackedScene" uid="uid://c8swoyikilgdo" path="res://Web/WebSpawner.tscn" id="3_ayjuu"]
 [ext_resource type="PackedScene" path="res://Bird/BirdSpawner.tscn" id="4_0w6td"]
-[ext_resource type="PackedScene" path="res://Human/HumanSpawner.tscn" id="4_6xvmp"]
+[ext_resource type="PackedScene" uid="uid://nawarmyed3vj" path="res://Human/HumanSpawner.tscn" id="4_6xvmp"]
 [ext_resource type="PackedScene" uid="uid://dxaao148m4pbp" path="res://Web/spider_web_shooter.tscn" id="4_65cun"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oemjb"]
