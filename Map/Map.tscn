@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://cvffhwr55x077" path="res://Event/rain.tscn" id="19_2q318"]
 [ext_resource type="PackedScene" uid="uid://dr2sgqe3xtott" path="res://Web/web_on_ground.tscn" id="19_dpt0a"]
 [ext_resource type="PackedScene" uid="uid://cq3ac747ytvrq" path="res://Event/waterdrop.tscn" id="21_kmgy4"]
+[ext_resource type="Texture2D" uid="uid://cdiiy30pejtay" path="res://wormhole1 (1).png" id="24_ck6e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpt0a"]
 
@@ -227,6 +228,9 @@ sources/6 = SubResource("TileSetAtlasSource_hnxga")
 sources/7 = SubResource("TileSetAtlasSource_xd2yo")
 sources/8 = SubResource("TileSetAtlasSource_cccvd")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8uph"]
+size = Vector2(118, 105.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehio4"]
 size = Vector2(1306, 9115)
 
@@ -235,9 +239,6 @@ size = Vector2(471, 9113)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bl6si"]
 size = Vector2(848, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8uph"]
-size = Vector2(204, 105.5)
 
 [node name="Map" type="Node2D" unique_id=1644254592]
 script = ExtResource("1_jq5q4")
@@ -1307,8 +1308,24 @@ scale = Vector2(3, 3)
 position = Vector2(196, 6786)
 scale = Vector2(3, 3)
 
+[node name="Area2D" type="Area2D" parent="." unique_id=784523845]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1151230287]
+position = Vector2(2489, 8702)
+shape = SubResource("RectangleShape2D_s8uph")
+debug_color = Color(0.94000006, 1.2032688e-05, 0.6190947, 0.41960785)
+
+[node name="TextureRect" type="TextureRect" parent="Area2D" unique_id=1180110140]
+texture_filter = 1
+offset_left = 2429.0002
+offset_top = 8638.001
+offset_right = 2469.0002
+offset_bottom = 8678.001
+scale = Vector2(2.9071946, 2.9071946)
+texture = ExtResource("24_ck6e3")
+
 [node name="Main-character" parent="." unique_id=1231940662 instance=ExtResource("14_ehio4")]
-position = Vector2(742, 190)
+position = Vector2(2201, 8635)
 
 [node name="LeftAreas" type="Node2D" parent="." unique_id=542322291]
 visible = false
@@ -1787,15 +1804,8 @@ offset_right = 3586.0
 offset_bottom = 9020.0
 color = Color(0, 0, 0, 0)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=784523845]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1151230287]
-position = Vector2(2526, 8707)
-shape = SubResource("RectangleShape2D_s8uph")
-
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="LeftAreas/LeftArea" to="." method="_on_left_area_body_entered"]
 [connection signal="body_exited" from="LeftAreas/LeftArea" to="." method="_on_left_area_body_exited"]
 [connection signal="body_entered" from="RightAreas/RightArea" to="." method="_on_right_area_body_entered"]
 [connection signal="body_exited" from="RightAreas/RightArea" to="." method="_on_right_area_body_exited"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
